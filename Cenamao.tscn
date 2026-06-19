@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://cmrg37tdgg3mx"]
+
+[ext_resource type="Script" uid="uid://dh1q2qehmnue0" path="res://cenamao.gd" id="1_jx3xg"]
+[ext_resource type="Script" uid="uid://dxuhpk5m3cp65" path="res://hand.gd" id="2_462kk"]
+[ext_resource type="Script" uid="uid://bc4r8mhmnu8fp" path="res://hand_2.gd" id="3_462kk"]
+
+[sub_resource type="Curve" id="Curve_jx3xg"]
+_data = [Vector2(0, 0), 0.0, 6.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_462kk"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0.004878044, -0.9325844), 0.0, 6.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_q51yc"]
+
+[sub_resource type="Curve" id="Curve_5uc64"]
+
+[node name="Node2D" type="Node2D" unique_id=1355917016]
+script = ExtResource("1_jx3xg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1236242357]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1882948569]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1.2032687e-07, 0.43791533, 0.3768158, 1)
+
+[node name="Hand" type="ColorRect" parent="CanvasLayer/ColorRect" unique_id=786181017]
+custom_minimum_size = Vector2(800, 140)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.08673027
+anchor_top = 0.78193146
+anchor_right = 0.8725065
+anchor_bottom = 1.0
+color = Color(1, 1, 1, 0.36862746)
+script = ExtResource("2_462kk")
+hand_curve = SubResource("Curve_jx3xg")
+rotation_curve = SubResource("Curve_462kk")
+max_rotation_degrees = 0
+y_max = 0
+cartas = Array[int]([4, -3, 9, -9])
+metadata/_edit_use_anchors_ = true
+
+[node name="Hand2" type="ColorRect" parent="CanvasLayer/ColorRect" unique_id=753986711]
+custom_minimum_size = Vector2(0, 140)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06857639
+anchor_top = 0.043209877
+anchor_right = 0.5395226
+anchor_bottom = 0.25925925
+color = Color(1, 1, 1, 0.29411766)
+script = ExtResource("3_462kk")
+hand_curve = SubResource("Curve_q51yc")
+rotation_curve = SubResource("Curve_5uc64")
+cartas = Array[int]([14, -5, 35236346453675400])
+card_y_on_mouse = -50.0
+metadata/_custom_type_script = "uid://dxuhpk5m3cp65"
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect" unique_id=1824459796]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75281876
+anchor_top = 0.028037382
+anchor_right = 0.98005205
+anchor_bottom = 0.098130845
+offset_left = -6.1035156e-05
+grow_horizontal = 0
+theme_override_constants/separation = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="Add" type="Button" parent="CanvasLayer/ColorRect/HBoxContainer" unique_id=1752495369]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Add card"
+
+[node name="del" type="Button" parent="CanvasLayer/ColorRect/HBoxContainer" unique_id=1936111805]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Delete card"
+
+[connection signal="pressed" from="CanvasLayer/ColorRect/HBoxContainer/Add" to="." method="_on_add_pressed"]
+[connection signal="pressed" from="CanvasLayer/ColorRect/HBoxContainer/del" to="." method="_on_del_pressed"]
