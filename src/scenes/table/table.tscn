@@ -35,48 +35,6 @@ script = ExtResource("3_73ohv")
 initial_values = Array[int]([-1, 2])
 metadata/_custom_type_script = "uid://67hv61diwdxd"
 
-[node name="TopBar" type="HBoxContainer" parent="." unique_id=2110947144]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.07638889
-anchor_right = 0.9236111
-anchor_bottom = 0.11574074
-grow_horizontal = 2
-alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Unlockables" type="PanelContainer" parent="TopBar" unique_id=311835803]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_8sogr")
-theme_type_variation = &"HandPanel"
-metadata/_edit_use_anchors_ = true
-
-[node name="Unlockables" type="Container" parent="TopBar/Unlockables" unique_id=1026011221]
-unique_name_in_owner = true
-layout_mode = 2
-script = ExtResource("3_73ohv")
-initial_values = Array[int]([1])
-metadata/_custom_type_script = "uid://67hv61diwdxd"
-
-[node name="VSeparator" type="VSeparator" parent="TopBar" unique_id=2126418456]
-layout_mode = 2
-theme_override_constants/separation = 81
-
-[node name="Incognitas" type="PanelContainer" parent="TopBar" unique_id=36671134]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_8sogr")
-theme_type_variation = &"HandPanel"
-metadata/_edit_use_anchors_ = true
-
-[node name="Incognitas" type="Container" parent="TopBar/Incognitas" unique_id=175837299]
-unique_name_in_owner = true
-layout_mode = 2
-script = ExtResource("3_73ohv")
-initial_values = Array[int]([5])
-metadata/_custom_type_script = "uid://67hv61diwdxd"
-
 [node name="MesaCenter" type="HBoxContainer" parent="." unique_id=487104842]
 custom_minimum_size = Vector2(1848, 420)
 layout_mode = 0
@@ -116,8 +74,51 @@ size_flags_horizontal = 3
 script = ExtResource("3_73ohv")
 metadata/_custom_type_script = "uid://67hv61diwdxd"
 
+[node name="TopBar" type="HBoxContainer" parent="." unique_id=2110947144]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.18385416
+anchor_top = 0.02962963
+anchor_right = 0.815625
+anchor_bottom = 0.15925926
+theme_override_constants/separation = 90
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Unlockables" type="PanelContainer" parent="TopBar" unique_id=311835803]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_8sogr")
+theme_type_variation = &"HandPanel"
+metadata/_edit_use_anchors_ = true
+
+[node name="Unlockables" type="Container" parent="TopBar/Unlockables" unique_id=1026011221]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_73ohv")
+max_card_width = 90
+hover_direction = 1
+initial_values = Array[int]([1])
+metadata/_custom_type_script = "uid://67hv61diwdxd"
+
+[node name="Incognitas" type="PanelContainer" parent="TopBar" unique_id=36671134]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_8sogr")
+theme_type_variation = &"HandPanel"
+metadata/_edit_use_anchors_ = true
+
+[node name="Incognitas" type="Container" parent="TopBar/Incognitas" unique_id=175837299]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_73ohv")
+max_card_width = 90
+hover_direction = 1
+initial_values = Array[int]([5])
+metadata/_custom_type_script = "uid://67hv61diwdxd"
+
 [connection signal="card_discarted" from="PlayerHand/PlayerHand" to="MesaCenter/MesaInput/MesaInput" method="draw_card"]
-[connection signal="card_discarted" from="TopBar/Unlockables/Unlockables" to="MesaCenter/MesaOutput/MesaOutput" method="draw_card"]
-[connection signal="card_discarted" from="TopBar/Incognitas/Incognitas" to="MesaCenter/MesaOutput/MesaOutput" method="draw_card"]
 [connection signal="card_discarted" from="MesaCenter/MesaInput/MesaInput" to="PlayerHand/PlayerHand" method="draw_card"]
 [connection signal="card_discarted" from="MesaCenter/MesaOutput/MesaOutput" to="." method="_on_mesa_output_card_discarted"]
+[connection signal="card_discarted" from="TopBar/Unlockables/Unlockables" to="MesaCenter/MesaOutput/MesaOutput" method="draw_card"]
+[connection signal="card_discarted" from="TopBar/Incognitas/Incognitas" to="MesaCenter/MesaOutput/MesaOutput" method="draw_card"]

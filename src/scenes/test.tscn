@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b6n35nmg4g3mw"]
+
+[ext_resource type="Script" uid="uid://67hv61diwdxd" path="res://src/scripts/hands/hand_deck.gd" id="1_ys0to"]
+[ext_resource type="PackedScene" uid="uid://hpjbc4ad37oe" path="res://src/scenes/cards/card.tscn" id="2_1wpl3"]
+
+[node name="HandDeck" type="Container" unique_id=405908847]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.15648147
+grow_horizontal = 2
+script = ExtResource("1_ys0to")
+max_card_width = 150
+metadata/_custom_type_script = "uid://67hv61diwdxd"
+metadata/_edit_use_anchors_ = true
+
+[node name="Card" parent="." unique_id=167699344 instance=ExtResource("2_1wpl3")]
+layout_mode = 2

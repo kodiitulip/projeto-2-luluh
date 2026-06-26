@@ -11,8 +11,13 @@ enum HAlignment {
 	FILL,
 }
 
+const CARD_ASPECT_RATIO: float = 0.7142857142857143
 const CARD = preload("uid://hpjbc4ad37oe")
 
+@export_range(7, 300, 1, "suffix:px") var max_card_width: int = 280:
+	set(v):
+		max_card_width = v
+		queue_sort()
 @export var x_sep: float = 10
 @export var hover_direction: Card.HoverDirection = Card.HoverDirection.UP
 @export var horizontal_alignment: HAlignment = HAlignment.CENTER:
@@ -39,6 +44,7 @@ func draw_card(card: Card) -> void:
 	else:
 		add_child(card)
 	card.selected.connect(discard, CONNECT_ONE_SHOT)
+	card.hover_direction = hover_direction
 	queue_sort()
 
 
@@ -68,13 +74,9 @@ func discard_free(card: Card) -> void:
 
 
 func _sort_cards() -> void:
-	var cards: Array = get_children().filter(func(n): return n is Card)
+	var cards: Array = get_children().filter(func(n: Control): return n is Control and n.visible)
 	var cards_num: int = cards.size()
-	var all_cards_size: float = cards.reduce(
-		func(accm, curr: Card):
-			return accm + curr.size.x,
-		0,
-	)
+	var all_cards_size: float = max_card_width * cards_num
 	var final_size: float = all_cards_size + x_sep * (cards_num - 1)
 	var final_x_sep: float = x_sep
 
@@ -92,14 +94,16 @@ func _sort_cards() -> void:
 			hoffset = (size.x - final_size)
 
 	for i in cards_num:
-		var card: Card = cards.get(i)
+		var card: Control = cards.get(i)
 		if not is_instance_valid(card):
 			continue
 		var final_pos: Vector2 = Vector2(
-			hoffset + card.size.x * i + final_x_sep * i,
+			hoffset + max_card_width * i + final_x_sep * i,
 			position.y,
 		)
-		fit_child_in_rect(card, Rect2(final_pos, card.size))
+		var final_rect_size: Vector2 = Vector2(max_card_width, max_card_width / CARD_ASPECT_RATIO)
+		var final_rect: Rect2 = Rect2(final_pos, final_rect_size)
+		fit_child_in_rect(card, final_rect)
 
 
 func _draw_initial_cards() -> void:

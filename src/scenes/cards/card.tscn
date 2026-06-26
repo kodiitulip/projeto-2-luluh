@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://7pud5acwucwq" path="res://src/resources/ui_themes/cards.tres" id="1_u778r"]
 [ext_resource type="Script" uid="uid://cg41xpkgnjk8p" path="res://src/scenes/cards/card.gd" id="2_yvbhk"]
+[ext_resource type="Script" uid="uid://cty6sj4ft1e80" path="res://src/scripts/other/font_scaler.gd" id="3_688yd"]
 [ext_resource type="Texture2D" uid="uid://dly6p10qkwsd2" path="res://assets/positivo.svg" id="3_k448l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvbhk"]
@@ -12,19 +13,13 @@ corner_radius_bottom_right = 100
 corner_radius_bottom_left = 100
 
 [node name="Card" type="PanelContainer" unique_id=167699344]
-custom_minimum_size = Vector2(280, 392)
 anchors_preset = -1
 anchor_right = 0.14583333
 anchor_bottom = 0.36296296
-offset_right = -113.33334
-offset_bottom = -158.66666
-size_flags_horizontal = 4
-size_flags_vertical = 4
 theme = ExtResource("1_u778r")
 theme_type_variation = &"Card"
 script = ExtResource("2_yvbhk")
 metadata/_custom_type_script = "uid://cg41xpkgnjk8p"
-metadata/_edit_use_anchors_ = true
 
 [node name="CardFront" type="Panel" parent="." unique_id=1717245960]
 layout_mode = 2
@@ -35,50 +30,68 @@ theme_type_variation = &"CardFront"
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.09259259
-anchor_right = 0.9074074
-anchor_bottom = 0.20157067
+anchor_left = 0.029411765
+anchor_right = 0.9705882
+anchor_bottom = 0.20052083
 grow_horizontal = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_type_variation = &"CardLabelPos"
 text = "+ 0"
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="FontScaler" type="Node" parent="CardFront/UpperNumber" unique_id=612111688]
+script = ExtResource("3_688yd")
+base_font_size = 56
+base_size = Vector2(256, 77)
+metadata/_custom_type_script = "uid://cty6sj4ft1e80"
 
 [node name="LowerNumber" type="Label" parent="CardFront" unique_id=278779674]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.09259259
-anchor_top = 0.798
-anchor_right = 0.9074074
+anchor_left = 0.029411765
+anchor_top = 0.7994792
+anchor_right = 0.9705882
 anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 0
 rotation = 3.1415927
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_type_variation = &"CardLabelPos"
+theme_override_font_sizes/font_size = 56
 text = "+ 0"
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="CenterContainer" type="CenterContainer" parent="CardFront" unique_id=342855712]
+[node name="FontScaler" type="Node" parent="CardFront/LowerNumber" unique_id=879234195]
+script = ExtResource("3_688yd")
+base_font_size = 56
+base_size = Vector2(256, 77)
+metadata/_custom_type_script = "uid://cty6sj4ft1e80"
+
+[node name="Panel" type="Panel" parent="CardFront" unique_id=1744359534]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.14705883
+anchor_top = 0.25
+anchor_right = 0.88235295
+anchor_bottom = 0.7708333
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yvbhk")
+metadata/_edit_use_anchors_ = true
+
+[node name="SignSymbol" type="TextureRect" parent="CardFront/Panel" unique_id=95174897]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.15
+anchor_right = 0.85
+anchor_bottom = 0.85
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="Panel" type="Panel" parent="CardFront/CenterContainer" unique_id=1744359534]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_yvbhk")
-
-[node name="SignSymbol" type="TextureRect" parent="CardFront/CenterContainer" unique_id=95174897]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(142, 142)
-layout_mode = 2
-mouse_filter = 2
 texture = ExtResource("3_k448l")
-expand_mode = 1
+expand_mode = 5
 stretch_mode = 5
