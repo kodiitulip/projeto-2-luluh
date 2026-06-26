@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://bn3xlqome0vbf"]
 
 [ext_resource type="Theme" uid="uid://7pud5acwucwq" path="res://src/resources/ui_themes/cards.tres" id="1_8sogr"]
+[ext_resource type="Script" uid="uid://bjtrqymxvib8g" path="res://src/scenes/table/table.gd" id="2_ct21j"]
 [ext_resource type="Script" uid="uid://67hv61diwdxd" path="res://src/scripts/hands/hand_deck.gd" id="3_73ohv"]
+[ext_resource type="Texture2D" uid="uid://cqxerrsyvc1m8" path="res://assets/sinal_vazio.svg" id="4_e3ca2"]
 
 [node name="Table" type="Panel" unique_id=1266911228]
 anchors_preset = 15
@@ -11,27 +13,29 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_8sogr")
 theme_type_variation = &"TablePanel"
+script = ExtResource("2_ct21j")
 
-[node name="Hand" type="PanelContainer" parent="." unique_id=2058545068]
+[node name="PlayerHand" type="PanelContainer" parent="." unique_id=2058545068]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.019965278
-anchor_top = 0.83641976
+anchor_top = 0.7453704
 anchor_right = 0.7824653
-anchor_bottom = 1.1993827
+anchor_bottom = 1.1083333
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_8sogr")
 theme_type_variation = &"HandPanel"
 metadata/_edit_use_anchors_ = true
 
-[node name="HandDeck" type="Container" parent="Hand" unique_id=1712651247]
+[node name="PlayerHand" type="Container" parent="PlayerHand" unique_id=1712651247]
+unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("3_73ohv")
-initial_values = Array[int]([94, -6, 5])
+initial_values = Array[int]([-1, 2])
 metadata/_custom_type_script = "uid://67hv61diwdxd"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2110947144]
+[node name="TopBar" type="HBoxContainer" parent="." unique_id=2110947144]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.07638889
@@ -41,30 +45,79 @@ grow_horizontal = 2
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Unlockables" type="PanelContainer" parent="HBoxContainer" unique_id=311835803]
+[node name="Unlockables" type="PanelContainer" parent="TopBar" unique_id=311835803]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_8sogr")
 theme_type_variation = &"HandPanel"
 metadata/_edit_use_anchors_ = true
 
-[node name="HandDeck" type="Container" parent="HBoxContainer/Unlockables" unique_id=1026011221]
+[node name="Unlockables" type="Container" parent="TopBar/Unlockables" unique_id=1026011221]
+unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("3_73ohv")
+initial_values = Array[int]([1])
 metadata/_custom_type_script = "uid://67hv61diwdxd"
 
-[node name="VSeparator" type="VSeparator" parent="HBoxContainer" unique_id=2126418456]
+[node name="VSeparator" type="VSeparator" parent="TopBar" unique_id=2126418456]
 layout_mode = 2
 theme_override_constants/separation = 81
 
-[node name="Incognitas" type="PanelContainer" parent="HBoxContainer" unique_id=36671134]
+[node name="Incognitas" type="PanelContainer" parent="TopBar" unique_id=36671134]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_8sogr")
 theme_type_variation = &"HandPanel"
 metadata/_edit_use_anchors_ = true
 
-[node name="HandDeck" type="Container" parent="HBoxContainer/Incognitas" unique_id=175837299]
+[node name="Incognitas" type="Container" parent="TopBar/Incognitas" unique_id=175837299]
+unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("3_73ohv")
+initial_values = Array[int]([5])
 metadata/_custom_type_script = "uid://67hv61diwdxd"
+
+[node name="MesaCenter" type="HBoxContainer" parent="." unique_id=487104842]
+custom_minimum_size = Vector2(1848, 420)
+layout_mode = 0
+anchor_left = 0.01875
+anchor_top = 0.30555555
+anchor_right = 0.98125
+anchor_bottom = 0.6944444
+theme_override_constants/separation = 48
+metadata/_edit_use_anchors_ = true
+
+[node name="MesaInput" type="PanelContainer" parent="MesaCenter" unique_id=2044469029]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MesaInput" type="Container" parent="MesaCenter/MesaInput" unique_id=575410292]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("3_73ohv")
+metadata/_custom_type_script = "uid://67hv61diwdxd"
+
+[node name="SinalImage" type="TextureRect" parent="MesaCenter" unique_id=1961713452]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+texture = ExtResource("4_e3ca2")
+stretch_mode = 5
+
+[node name="MesaOutput" type="PanelContainer" parent="MesaCenter" unique_id=171109596]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MesaOutput" type="Container" parent="MesaCenter/MesaOutput" unique_id=1848073286]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("3_73ohv")
+metadata/_custom_type_script = "uid://67hv61diwdxd"
+
+[connection signal="card_discarted" from="PlayerHand/PlayerHand" to="MesaCenter/MesaInput/MesaInput" method="draw_card"]
+[connection signal="card_discarted" from="TopBar/Unlockables/Unlockables" to="MesaCenter/MesaOutput/MesaOutput" method="draw_card"]
+[connection signal="card_discarted" from="TopBar/Incognitas/Incognitas" to="MesaCenter/MesaOutput/MesaOutput" method="draw_card"]
+[connection signal="card_discarted" from="MesaCenter/MesaInput/MesaInput" to="PlayerHand/PlayerHand" method="draw_card"]
+[connection signal="card_discarted" from="MesaCenter/MesaOutput/MesaOutput" to="." method="_on_mesa_output_card_discarted"]

@@ -2,6 +2,9 @@
 class_name Card
 extends PanelContainer
 
+const NEGATIVO = preload("uid://dqj0m3ytsi8nv")
+const POSITIVO = preload("uid://dly6p10qkwsd2")
+
 signal selected(card: Card)
 
 enum HoverDirection {
@@ -13,16 +16,19 @@ enum HoverDirection {
 	set = _set_value
 @export var max_z_index: int = 50
 
+var origin_deck: HandDeck
 var hover_direction: HoverDirection
 var hover_offset: float = 50
 
-@onready var label: Label = $CenterContainer/Label
+@onready var upper_number: Label = %UpperNumber
+@onready var lower_number: Label = %LowerNumber
+@onready var sign_symbol: TextureRect = %SignSymbol
 
 
 func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
-	label.text = str(value)
+	_set_value(value)
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -49,6 +55,16 @@ func _on_mouse_exited() -> void:
 
 func _set_value(new: int) -> void:
 	value = new
-	if not is_instance_valid(label):
+	if not (is_instance_valid(upper_number)
+		and is_instance_valid(lower_number)
+		and is_instance_valid(sign_symbol)):
 		await ready
-	label.text = str(value)
+	var is_pos: bool = signi(value) >= 0
+	var text: String = ("+ %s" % value) if is_pos else ("- %s" % abs(value))
+	upper_number.text = text
+	lower_number.text = text
+	var type_variation: StringName = &"CardLabelPos" if is_pos else &"CardLabelNeg"
+	upper_number.theme_type_variation = type_variation
+	lower_number.theme_type_variation = type_variation
+	var symbol: Texture2D = POSITIVO if is_pos else NEGATIVO
+	sign_symbol.texture = symbol

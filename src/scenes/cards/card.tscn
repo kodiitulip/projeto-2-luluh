@@ -2,18 +2,14 @@
 
 [ext_resource type="Theme" uid="uid://7pud5acwucwq" path="res://src/resources/ui_themes/cards.tres" id="1_u778r"]
 [ext_resource type="Script" uid="uid://cg41xpkgnjk8p" path="res://src/scenes/cards/card.gd" id="2_yvbhk"]
+[ext_resource type="Texture2D" uid="uid://dly6p10qkwsd2" path="res://assets/positivo.svg" id="3_k448l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvbhk"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.9019608, 0.9019608, 0.9019608, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
+bg_color = Color(0.9019608, 0.9019608, 0.9019608, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
 
 [node name="Card" type="PanelContainer" unique_id=167699344]
 custom_minimum_size = Vector2(280, 392)
@@ -30,19 +26,13 @@ script = ExtResource("2_yvbhk")
 metadata/_custom_type_script = "uid://cg41xpkgnjk8p"
 metadata/_edit_use_anchors_ = true
 
-[node name="Control" type="Control" parent="." unique_id=1763688030]
+[node name="CardFront" type="Panel" parent="." unique_id=1717245960]
 layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"CardFront"
 
-[node name="Panel" type="Panel" parent="Control" unique_id=1516747001]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_yvbhk")
-
-[node name="UpperNumber" type="Label" parent="Control" unique_id=59056187]
+[node name="UpperNumber" type="Label" parent="CardFront" unique_id=59056187]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.09259259
@@ -50,12 +40,12 @@ anchor_right = 0.9074074
 anchor_bottom = 0.20157067
 grow_horizontal = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
-theme_type_variation = &"CardLabel"
-text = "0"
+theme_type_variation = &"CardLabelPos"
+text = "+ 0"
 vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
 
-[node name="LowerNumber" type="Label" parent="Control" unique_id=278779674]
+[node name="LowerNumber" type="Label" parent="CardFront" unique_id=278779674]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.09259259
@@ -65,6 +55,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 rotation = 3.1415927
 pivot_offset_ratio = Vector2(0.5, 0.5)
-theme_type_variation = &"CardLabel"
-text = "0"
+theme_type_variation = &"CardLabelPos"
+text = "+ 0"
 vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CardFront" unique_id=342855712]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="CardFront/CenterContainer" unique_id=1744359534]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yvbhk")
+
+[node name="SignSymbol" type="TextureRect" parent="CardFront/CenterContainer" unique_id=95174897]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(142, 142)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_k448l")
+expand_mode = 1
+stretch_mode = 5

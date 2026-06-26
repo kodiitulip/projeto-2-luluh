@@ -43,11 +43,12 @@ func draw_card(card: Card) -> void:
 	queue_sort()
 
 
-func draw_new(num: int = get_child_count() + 1) -> void:
+func draw_new(num: int) -> void:
 	var new_card: Card = CARD.instantiate()
 	new_card.value = num
 	new_card.hover_direction = hover_direction
 	new_card.selected.connect(discard, CONNECT_ONE_SHOT)
+	new_card.origin_deck = self
 	add_child(new_card)
 	queue_sort()
 
