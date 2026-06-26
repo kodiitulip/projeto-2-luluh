@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://bn3xlqome0vbf"]
+
+[ext_resource type="Theme" uid="uid://7pud5acwucwq" path="res://src/resources/ui_themes/cards.tres" id="1_8sogr"]
+[ext_resource type="Script" uid="uid://67hv61diwdxd" path="res://src/scripts/hands/hand_deck.gd" id="3_73ohv"]
+
+[node name="Table" type="Panel" unique_id=1266911228]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8sogr")
+theme_type_variation = &"TablePanel"
+
+[node name="Hand" type="PanelContainer" parent="." unique_id=2058545068]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.019965278
+anchor_top = 0.83641976
+anchor_right = 0.7824653
+anchor_bottom = 1.1993827
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_8sogr")
+theme_type_variation = &"HandPanel"
+metadata/_edit_use_anchors_ = true
+
+[node name="HandDeck" type="Container" parent="Hand" unique_id=1712651247]
+layout_mode = 2
+script = ExtResource("3_73ohv")
+initial_values = Array[int]([94, -6, 5])
+metadata/_custom_type_script = "uid://67hv61diwdxd"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2110947144]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07638889
+anchor_right = 0.9236111
+anchor_bottom = 0.11574074
+grow_horizontal = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Unlockables" type="PanelContainer" parent="HBoxContainer" unique_id=311835803]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_8sogr")
+theme_type_variation = &"HandPanel"
+metadata/_edit_use_anchors_ = true
+
+[node name="HandDeck" type="Container" parent="HBoxContainer/Unlockables" unique_id=1026011221]
+layout_mode = 2
+script = ExtResource("3_73ohv")
+metadata/_custom_type_script = "uid://67hv61diwdxd"
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer" unique_id=2126418456]
+layout_mode = 2
+theme_override_constants/separation = 81
+
+[node name="Incognitas" type="PanelContainer" parent="HBoxContainer" unique_id=36671134]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_8sogr")
+theme_type_variation = &"HandPanel"
+metadata/_edit_use_anchors_ = true
+
+[node name="HandDeck" type="Container" parent="HBoxContainer/Incognitas" unique_id=175837299]
+layout_mode = 2
+script = ExtResource("3_73ohv")
+metadata/_custom_type_script = "uid://67hv61diwdxd"

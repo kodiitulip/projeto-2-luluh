@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://hpjbc4ad37oe"]
+
+[ext_resource type="Theme" uid="uid://7pud5acwucwq" path="res://src/resources/ui_themes/cards.tres" id="1_u778r"]
+[ext_resource type="Script" uid="uid://cg41xpkgnjk8p" path="res://src/scenes/cards/card.gd" id="2_yvbhk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvbhk"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.9019608, 0.9019608, 0.9019608, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="Card" type="PanelContainer" unique_id=167699344]
+custom_minimum_size = Vector2(280, 392)
+anchors_preset = -1
+anchor_right = 0.14583333
+anchor_bottom = 0.36296296
+offset_right = -113.33334
+offset_bottom = -158.66666
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_u778r")
+theme_type_variation = &"Card"
+script = ExtResource("2_yvbhk")
+metadata/_custom_type_script = "uid://cg41xpkgnjk8p"
+metadata/_edit_use_anchors_ = true
+
+[node name="Control" type="Control" parent="." unique_id=1763688030]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Control" unique_id=1516747001]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yvbhk")
+
+[node name="UpperNumber" type="Label" parent="Control" unique_id=59056187]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.09259259
+anchor_right = 0.9074074
+anchor_bottom = 0.20157067
+grow_horizontal = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_type_variation = &"CardLabel"
+text = "0"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="LowerNumber" type="Label" parent="Control" unique_id=278779674]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.09259259
+anchor_top = 0.798
+anchor_right = 0.9074074
+anchor_bottom = 1.0
+grow_horizontal = 2
+rotation = 3.1415927
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_type_variation = &"CardLabel"
+text = "0"
+vertical_alignment = 1

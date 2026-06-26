@@ -1,0 +1,29 @@
+[gd_resource type="Theme" format=3 uid="uid://7pud5acwucwq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sp33s"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.72156864, 0.72156864, 0.72156864, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hntio"]
+bg_color = Color(0.36862746, 0.64705884, 0.60784316, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50bxe"]
+bg_color = Color(0, 0.4392157, 0.3764706, 1)
+
+[resource]
+Card/base_type = &"PanelContainer"
+Card/styles/panel = SubResource("StyleBoxFlat_sp33s")
+CardLabel/base_type = &"Label"
+CardLabel/colors/font_color = Color(0, 0, 0, 1)
+CardLabel/font_sizes/font_size = 56
+HandPanel/base_type = &"PanelContainer"
+HandPanel/styles/panel = SubResource("StyleBoxFlat_hntio")
+TablePanel/base_type = &"Panel"
+TablePanel/styles/panel = SubResource("StyleBoxFlat_50bxe")
