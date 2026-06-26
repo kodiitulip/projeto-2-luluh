@@ -2,15 +2,15 @@
 class_name Card
 extends PanelContainer
 
-const NEGATIVO = preload("uid://dqj0m3ytsi8nv")
-const POSITIVO = preload("uid://dly6p10qkwsd2")
-
 signal selected(card: Card)
 
 enum HoverDirection {
 	UP,
 	DOWN,
 }
+
+const NEGATIVO = preload("uid://dqj0m3ytsi8nv")
+const POSITIVO = preload("uid://dly6p10qkwsd2")
 
 @export var value: int = 0:
 	set = _set_value
@@ -57,7 +57,7 @@ func _set_value(new: int) -> void:
 	value = new
 	if not (is_instance_valid(upper_number)
 		and is_instance_valid(lower_number)
-		and is_instance_valid(sign_symbol)):
+		and is_instance_valid(sign_symbol) ):
 		await ready
 	var is_pos: bool = signi(value) >= 0
 	var text: String = ("+ %s" % value) if is_pos else ("- %s" % abs(value))

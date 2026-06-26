@@ -19,7 +19,6 @@ const CARD = preload("uid://hpjbc4ad37oe")
 	set(v):
 		horizontal_alignment = v
 		queue_sort()
-
 @export_group("Initial Cards", "initial_")
 @export var initial_values: Array[int]
 @export_subgroup("Debug Buttons")
@@ -101,6 +100,7 @@ func _sort_cards() -> void:
 			position.y,
 		)
 		fit_child_in_rect(card, Rect2(final_pos, card.size))
+
 
 func _draw_initial_cards() -> void:
 	for card: int in initial_values:
